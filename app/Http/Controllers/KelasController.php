@@ -14,7 +14,10 @@ class KelasController extends Controller
     public function index()
     {
         $kode_kelas = Kelas::createKelas();
-        return view('pages.kelas.index', compact('kode_kelas'));
+        $jurusan = Jurusan::all();
+        return view('pages.kelas.index', compact('kode_kelas'))->with([
+            'jurusan'   =>  $jurusan
+        ]);
     }
 
     /**
@@ -22,7 +25,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.kelas.index', compact('kode_kelas'), [
+            'jurusan'         => Jurusan::all()
+        ]);
     }
 
     /**
@@ -31,13 +36,13 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $data = [
-          'kode_kelas'      => $request->input('kode_kelas'),
-          'kelas'           => $request->input('kelas'),
-          'jurusan'         => Jurusan::all()
+            'kode_kelas' => $request->input('kode_kelas'),
+            'kode_jurusan' => $request->input('jurusan'),
+            'kelas' => $request->input('kelas')
         ];
 
         Kelas::create($data);
-        return redirect()->route('kelas.index');
+        return redirect()->route('kelas.index'); 
     }
 
     /**
@@ -61,7 +66,16 @@ class KelasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+          'kode_kelas'      => $request->input('kode_kelas'),
+          'kelas'           => $request->input('kelas'),
+          'jurusan'         => Jurusan::all()
+        ];
+        $status = Kelas::findOrFail($id);
+            $status->update($data);
+            return redirect()
+                ->route('kelas.index')
+                ->with('message', 'Data Status Sudah diupdate');
     }
 
     /**

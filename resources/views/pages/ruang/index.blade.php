@@ -68,7 +68,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    {{-- <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
+    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -85,32 +85,35 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
+                        <div class="mb-5">
                             <label for="kode_ruang"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
                                 <span class="text-red-500">*</span></label>
+                            <input type="text" id="kd_ruang" name="kode_ruang"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Kode Ruangan...." />
                             <span class="text-sm m-l text-red-500">{{ $errors->first('kode_ruang') }}</span>
                         </div>
                         <div class="mb-5">
                             <label for="ruang"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="kode_ruang" name="ruang"
+                            <input type="text" id="nm_ruang" name="ruang"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukan Ruangan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_ruang') }}</span>
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('ruang') }}</span>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                         <button type="submit" id="formSourceButton"
                             class="bg-green-400 m-2 w-40 h-10 rounded-xl hover:bg-green-500">Simpan</button>
-                        <button type="button" data-modal-target="sourceModal" onclick="changeSourceModal(this)"
+                        <button type="button" data-modal-target="sourceModal" onclick="sourceModalClose(this)"
                             class="bg-red-500 m-2 w-40 h-10 rounded-xl text-white hover:shadow-lg hover:bg-red-600">Batal</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- END MODAL --}}
     <script>
         $(document).ready(function() {
@@ -160,44 +163,40 @@
             });
         });
 
-        // const editSourceModal = (button) => {
-        //     const formModal = document.getElementById('formSourceModal');
-        //     const modalTarget = button.dataset.modalTarget;
-        //     const id = button.dataset.id;
-        //     const kode_ruang = button.dataset.kode_ruang;
-        //     const ruang = button.dataset.ruang;
-        //     console.log(button.dataset);
-        //     let url = "{{ route('ruang.update', ':id') }}".replace(':id', id);
-        //     let status = document.getElementById(modalTarget);
-        //     document.getElementById('title_source').innerText = Update Ruang $ {
-        //         kode_ruang
-        //     };
-        //     document.getElementById('kode_ruang').value = kode_ruang;
-        //     document.querySelector('[name="ruang"]').value = ruang;
-        //     let event = new Event('change');
-        //     document.querySelector('[name="ruang"]').dispatchEvent(event);
+        const editSourceModal = (button) => {
+            const formModal = document.getElementById('formSourceModal');
+            const modalTarget = button.dataset.modalTarget;
+            const id = button.dataset.id;
+            const ruang = button.dataset.ruang;
+            const kode_ruang = button.dataset.kode_ruang;
+            console.log(button.dataset);
+            let url = "{{ route('ruang.update', ':id') }}".replace(':id', id);
+            let status = document.getElementById(modalTarget);
+            document.getElementById('title_source').innerText = `Update Ruang ${ruang}`;
+            document.getElementById('kd_ruang').value = kode_ruang;
+            document.getElementById('nm_ruang').value = ruang;
 
-        //     document.getElementById('formSourceButton').innerText = 'Simpan';
-        //     document.getElementById('formSourceModal').setAttribute('action', url);
-        //     let csrfToken = document.createElement('input');
-        //     csrfToken.setAttribute('type', 'hidden');
-        //     csrfToken.setAttribute('value', '{{ csrf_token() }}');
-        //     formModal.appendChild(csrfToken);
+            document.getElementById('formSourceButton').innerText = 'Simpan';
+            document.getElementById('formSourceModal').setAttribute('action', url);
+            let csrfToken = document.createElement('input');
+            csrfToken.setAttribute('type', 'hidden');
+            csrfToken.setAttribute('value', '{{ csrf_token() }}');
+            formModal.appendChild(csrfToken);
 
-        //     let methodInput = document.createElement('input');
-        //     methodInput.setAttribute('type', 'hidden');
-        //     methodInput.setAttribute('name', '_method');
-        //     methodInput.setAttribute('value', 'PATCH');
-        //     formModal.appendChild(methodInput);
+            let methodInput = document.createElement('input');
+            methodInput.setAttribute('type', 'hidden');
+            methodInput.setAttribute('name', '_method');
+            methodInput.setAttribute('value', 'PATCH');
+            formModal.appendChild(methodInput);
 
-        //     status.classList.toggle('hidden');
-        // }
+            status.classList.toggle('hidden');
+        }
 
-        // const sourceModalClose = (button) => {
-        //     const modalTarget = button.dataset.modalTarget;
-        //     let status = document.getElementById(modalTarget);
-        //     status.classList.toggle('hidden');
-        // }
+        const sourceModalClose = (button) => {
+            const modalTarget = button.dataset.modalTarget;
+            let status = document.getElementById(modalTarget);
+            status.classList.toggle('hidden');
+        }
 
         const ruangDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);

@@ -60,15 +60,14 @@ class RuangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
             $data = [
-                'status' => $request->input('sts'),
-                'availability' => 'AVAILABLE',
+                'kode_ruang'      => $request->input('kode_ruang'),
+                'ruang'           => $request->input('ruang')
             ];
             $status = Ruang::findOrFail($id);
             $status->update($data);
             return redirect()
-                ->route('barang.index')
+                ->route('ruang.index')
                 ->with('message', 'Data Status Sudah diupdate');
     }
 

@@ -59,7 +59,15 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+          'kode_jurusan'      => $request->input('kode_jurusan'),
+          'jurusan'           => $request->input('jurusan'),
+        ];
+         $status = Jurusan::findOrFail($id);
+            $status->update($data);
+            return redirect()
+                ->route('jurusan.index')
+                ->with('message', 'Data Status Sudah diupdate');
     }
 
     /**

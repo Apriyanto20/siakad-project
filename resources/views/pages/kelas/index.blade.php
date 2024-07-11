@@ -23,6 +23,19 @@
                                     placeholder="" value="{{ $kode_kelas }}" readonly required />
                             </div>
                             <div class="mb-5">
+                                <label for="jurusan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan
+                                    <span class="text-red-500">*</span></label>
+                                <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                    name="jurusan" data-placeholder="Pilih Jurusan">
+                                    <option value="">Pilih...</option>
+                                    @foreach ($jurusan as $j)
+                                        <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-sm m-l text-red-500">{{ $errors->first('lantai') }}</span>
+                            </div>
+                            <div class="mb-5">
                                 <label for="kelas"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Kelas</label>
@@ -52,6 +65,10 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Jurusan
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Kelas
                                         </th>
                                         <th scope="col"
@@ -68,7 +85,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    {{-- <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
+    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -85,32 +102,45 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
-                            <label for="kode_ruang"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
+                        <div class="mb-5">
+                            <label for="kode_kelas"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kelas
                                 <span class="text-red-500">*</span></label>
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_ruang') }}</span>
+                            <input type="text" id="kd_kelas" name="kode_kelas"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Kode kelasan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_kelas') }}</span>
+                        </div>
+                        <div>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jurusan</label>
+                            <select class="js-example-placeholder-single js-states form-control w-[670px] m-6"
+                                id="sts" name="sts" data-placeholder="Pilih Jurusan">
+                               <option value="">Pilih...</option>
+                                    @foreach ($jurusan as $j)
+                                        <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
+                                    @endforeach
+                            </select>
                         </div>
                         <div class="mb-5">
-                            <label for="ruang"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
+                            <label for="kelas"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kelas
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="kode_ruang" name="ruang"
+                            <input type="text" id="nm_kelas" name="kelas"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Ruangan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_ruang') }}</span>
+                                placeholder="Masukan kelasan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('kelas') }}</span>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                         <button type="submit" id="formSourceButton"
                             class="bg-green-400 m-2 w-40 h-10 rounded-xl hover:bg-green-500">Simpan</button>
-                        <button type="button" data-modal-target="sourceModal" onclick="changeSourceModal(this)"
+                        <button type="button" data-modal-target="sourceModal" onclick="sourceModalClose(this)"
                             class="bg-red-500 m-2 w-40 h-10 rounded-xl text-white hover:shadow-lg hover:bg-red-600">Batal</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- END MODAL --}}
     <script>
         $(document).ready(function() {
@@ -133,6 +163,11 @@
                     data: 'kode_kelas',
                     render: (data, type, row) => {
                         return data;
+                    }
+                }, {
+                    data: 'jurusan',
+                    render: (data, type, row) => {
+                        return data.jurusan;
                     }
                 }, {
                     data: 'kelas',
@@ -159,45 +194,44 @@
                 }, ],
             });
         });
+        const editSourceModal = (button) => {
+            const formModal = document.getElementById('formSourceModal');
+            const modalTarget = button.dataset.modalTarget;
+            const id = button.dataset.id;
+            const kelas = button.dataset.kelas;
+            const kode_kelas = button.dataset.kode_kelas;
+            console.log(button.dataset);
+            let url = "{{ route('kelas.update', ':id') }}".replace(':id', id);
+            let status = document.getElementById(modalTarget);
+            document.getElementById('title_source').innerText = `Update kelas ${kelas}`;
+            document.getElementById('kd_kelas').value = kode_kelas;
+            document.getElementById('nm_kelas').value = kelas;
+            document.getElementById('sts').value = sts;
+            document.querySelector('[name="sts"]').value = sts;
+            let event = new Event('change');
+            document.querySelector('[name="sts"]').dispatchEvent(event);
 
-        // const editSourceModal = (button) => {
-        //     const formModal = document.getElementById('formSourceModal');
-        //     const modalTarget = button.dataset.modalTarget;
-        //     const id = button.dataset.id;
-        //     const kode_ruang = button.dataset.kode_ruang;
-        //     const ruang = button.dataset.ruang;
-        //     console.log(button.dataset);
-        //     let url = "{{ route('ruang.update', ':id') }}".replace(':id', id);
-        //     let status = document.getElementById(modalTarget);
-        //     document.getElementById('title_source').innerText = Update Ruang $ {
-        //         kode_ruang
-        //     };
-        //     document.getElementById('kode_ruang').value = kode_ruang;
-        //     document.querySelector('[name="ruang"]').value = ruang;
-        //     let event = new Event('change');
-        //     document.querySelector('[name="ruang"]').dispatchEvent(event);
+            document.getElementById('formSourceButton').innerText = 'Simpan';
+            document.getElementById('formSourceModal').setAttribute('action', url);
+            let csrfToken = document.createElement('input');
+            csrfToken.setAttribute('type', 'hidden');
+            csrfToken.setAttribute('value', '{{ csrf_token() }}');
+            formModal.appendChild(csrfToken);
 
-        //     document.getElementById('formSourceButton').innerText = 'Simpan';
-        //     document.getElementById('formSourceModal').setAttribute('action', url);
-        //     let csrfToken = document.createElement('input');
-        //     csrfToken.setAttribute('type', 'hidden');
-        //     csrfToken.setAttribute('value', '{{ csrf_token() }}');
-        //     formModal.appendChild(csrfToken);
+            let methodInput = document.createElement('input');
+            methodInput.setAttribute('type', 'hidden');
+            methodInput.setAttribute('name', '_method');
+            methodInput.setAttribute('value', 'PATCH');
+            formModal.appendChild(methodInput);
 
-        //     let methodInput = document.createElement('input');
-        //     methodInput.setAttribute('type', 'hidden');
-        //     methodInput.setAttribute('name', '_method');
-        //     methodInput.setAttribute('value', 'PATCH');
-        //     formModal.appendChild(methodInput);
+            status.classList.toggle('hidden');
+        }
 
-        //     status.classList.toggle('hidden');
-        // }
-
-        // const sourceModalClose = (button) => {
-        //     const modalTarget = button.dataset.modalTarget;
-        //     let status = document.getElementById(modalTarget);
-        //     status.classList.toggle('hidden');
-        // }
+        const sourceModalClose = (button) => {
+            const modalTarget = button.dataset.modalTarget;
+            let status = document.getElementById(modalTarget);
+            status.classList.toggle('hidden');
+        }
 
         const kelasDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);

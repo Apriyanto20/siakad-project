@@ -5,25 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jurusan extends Model
+class Dosen extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-      'kode_jurusan',
-      'jurusan'
+      'kode_dosen',
+      'dosen',
+      'email',
+      'no_hp'
     ];
 
-protected $table = 'jurusans';
+protected $table = 'dosens';
 
-    public static function createJurusan()
+    public static function createDosen()
     {
-        $latestCode = self::orderBy('kode_jurusan', 'desc')->value('kode_jurusan');
+        $latestCode = self::orderBy('kode_dosen', 'desc')->value('kode_dosen');
         $latestCodeNumber = intval(substr($latestCode, 2));
         $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
         $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
-        return 'J' . $formattedCodeNumber;
-    }
-    public function kelas(){
-        return $this->hasMany(Kelas::class, 'kode_kelas');
+        return 'DSN' . $formattedCodeNumber;
     }
 }

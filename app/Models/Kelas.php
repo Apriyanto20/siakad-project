@@ -10,6 +10,7 @@ class Kelas extends Model
     use HasFactory;
      protected $fillable = [
       'kode_kelas',
+      'kode_jurusan',
       'kelas'
     ];
 
@@ -26,6 +27,6 @@ protected $table = 'kelas';
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class, 'kode_jurusan', 'id');
+        return $this->belongsTo(Jurusan::class, 'kode_jurusan', 'kode_jurusan');
     }
 }
