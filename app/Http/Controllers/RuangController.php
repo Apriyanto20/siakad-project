@@ -51,7 +51,8 @@ class RuangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ruang = Ruang::findOrFail($id);
+        return view('ruang.edit', compact('ruang'));
     }
 
     /**
@@ -59,7 +60,16 @@ class RuangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+            $data = [
+                'status' => $request->input('sts'),
+                'availability' => 'AVAILABLE',
+            ];
+            $status = Ruang::findOrFail($id);
+            $status->update($data);
+            return redirect()
+                ->route('barang.index')
+                ->with('message', 'Data Status Sudah diupdate');
     }
 
     /**

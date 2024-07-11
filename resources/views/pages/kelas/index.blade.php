@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Ruang') }}
+            {{ __('Kelas') }}
         </h2>
     </x-slot>
 
@@ -11,24 +11,24 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Form Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Form Tambah Ruang</h3>
-                        <form action="{{ route('ruang.store') }}" method="POST">
+                        <h3 class="text-lg font-semibold mb-4">Form Tambah Kelas</h3>
+                        <form action="{{ route('kelas.store') }}" method="POST">
                             @csrf
                             <div class="my-5">
-                                <label for="kode_ruang"
+                                <label for="kode_kelas"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Kode Ruang</label>
-                                <input type="text" id="kode_ruang" name="kode_ruang"
+                                    Kode Kelas</label>
+                                <input type="text" id="kode_kelas" name="kode_kelas"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ $kode_ruang }}" readonly required />
+                                    placeholder="" value="{{ $kode_kelas }}" readonly required />
                             </div>
                             <div class="mb-5">
-                                <label for="ruang"
+                                <label for="kelas"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Ruang</label>
-                                <input type="text" id="ruang" name="ruang"
+                                    Kelas</label>
+                                <input type="text" id="kelas" name="kelas"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan Nama Ruang" required autofocus />
+                                    placeholder="Masukan Nama kelas" required autofocus />
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -37,9 +37,9 @@
 
                     <!-- Data Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Data Ruang</h3>
+                        <h3 class="text-lg font-semibold mb-4">Data Kelas</h3>
                         <div class="overflow-x-auto">
-                            <table class="table table-bordered" id="ruang-datatable">
+                            <table class="table table-bordered" id="kelas-datatable">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col"
@@ -48,11 +48,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Kode Ruang
+                                            Kode Kelas
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Ruang
+                                            Kelas
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -68,7 +68,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
+    {{-- <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -110,19 +110,19 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- END MODAL --}}
     <script>
         $(document).ready(function() {
             console.log('RUN!');
-            $('#ruang-datatable').DataTable({
+            $('#kelas-datatable').DataTable({
                 ajax: {
-                    url: 'api/ruang',
-                    dataSrc: 'ruang'
+                    url: 'api/kelas',
+                    dataSrc: 'kelas'
                 },
                 initComplete: function() {
                     // Menengahkan teks di semua sel pada header (baris pertama)
-                    $('#ruang-datatable thead th').css('text-align', 'center');
+                    $('#kelas-datatable thead th').css('text-align', 'center');
                 },
                 columns: [{
                     data: 'no',
@@ -130,30 +130,30 @@
                         return `<div style="text-align:center">${meta.row + 1}.</div>`;;
                     }
                 }, {
-                    data: 'kode_ruang',
+                    data: 'kode_kelas',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
-                    data: 'ruang',
+                    data: 'kelas',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
                     data: {
                         id: 'id',
-                        ruang: 'ruang'
+                        kelas: 'kelas'
                     },
                     render: (data, type, row) => {
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
-                                                        data-modal-target="sourceModal" data-kode_ruang="${data.kode_ruang}" data-ruang="${data.ruang}"
+                                                        data-modal-target="sourceModal" data-kode_kelas="${data.kode_kelas}" data-kelas="${data.kelas}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
                                                     </button>`;
                         let deleteUrl =
-                            `<button onclick="return ruangDelete('${data.id}','${data.ruang}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+                            `<button onclick="return kelasDelete('${data.id}','${data.kelas}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
                         return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
@@ -199,10 +199,10 @@
         //     status.classList.toggle('hidden');
         // }
 
-        const ruangDelete = async (id, name) => {
+        const kelasDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);
             if (tanya) {
-                await axios.post(`/ruang/${id}`, {
+                await axios.post(`/kelas/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })
