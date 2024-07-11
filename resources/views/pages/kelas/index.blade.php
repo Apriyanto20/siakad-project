@@ -115,10 +115,10 @@
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jurusan</label>
                             <select class="js-example-placeholder-single js-states form-control w-[670px] m-6"
                                 id="sts" name="sts" data-placeholder="Pilih Jurusan">
-                               <option value="">Pilih...</option>
-                                    @foreach ($jurusan as $j)
-                                        <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
-                                    @endforeach
+                                <option value="">Pilih...</option>
+                                @foreach ($jurusan as $j)
+                                    <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-5">
