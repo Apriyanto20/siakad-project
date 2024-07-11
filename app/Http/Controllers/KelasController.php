@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class KelasController extends Controller
     {
         $data = [
           'kode_kelas'      => $request->input('kode_kelas'),
-          'kelas'           => $request->input('kelas')
+          'kelas'           => $request->input('kelas'),
+          'jurusan'         => Jurusan::all()
         ];
 
         Kelas::create($data);

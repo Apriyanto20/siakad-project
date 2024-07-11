@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
-class JurusanAPIController extends Controller
+class JurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $kode_jurusan = Jurusan::createJurusan();
+        return view('pages.jurusan.index', compact('kode_jurusan'));
     }
 
     /**
@@ -27,7 +29,13 @@ class JurusanAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $data = [
+          'kode_jurusan'      => $request->input('kode_jurusan'),
+          'jurusan'           => $request->input('jurusan'),
+        ];
+
+        Jurusan::create($data);
+        return redirect()->route('jurusan.index');
     }
 
     /**
@@ -59,6 +67,8 @@ class JurusanAPIController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->delete();
+        return back()->with('message_delete','Data Jurusan Sudah dihapus');
     }
 }

@@ -23,4 +23,9 @@ protected $table = 'kelas';
         $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
         return 'K' . $formattedCodeNumber;
     }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'kode_jurusan', 'id');
+    }
 }
