@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProfileController;
@@ -24,5 +25,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('ruang', RuangController::class)->middleware(['auth']);
 Route::resource('kelas', KelasController::class)->middleware(['auth']);
 Route::resource('jurusan', JurusanController::class)->middleware(['auth']);
+Route::resource('dosen', DosenController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

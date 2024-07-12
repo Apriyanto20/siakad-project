@@ -11,7 +11,7 @@ class Dosen extends Model
 
     protected $fillable = [
       'kode_dosen',
-      'dosen',
+      'nama_dosen',
       'email',
       'no_hp'
     ];

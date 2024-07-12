@@ -34,14 +34,17 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('ruang.index')">
-                                {{ __('Ruang') }}
+                            <x-dropdown-link :href="route('dosen.index')">
+                                {{ __('Dosen') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('jurusan.index')">
                                 {{ __('Jurusan') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('kelas.index')">
                                 {{ __('Kelas') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('ruang.index')">
+                                {{ __('Ruang') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

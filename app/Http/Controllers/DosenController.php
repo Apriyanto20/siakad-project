@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
@@ -11,7 +12,8 @@ class DosenController extends Controller
      */
     public function index()
     {
-        //
+         $kode_dosen = Dosen::createDosen();
+        return view('pages.dosen.index', compact('kode_dosen'));
     }
 
     /**
@@ -27,7 +29,14 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'kode_dosen'    => $request->input('kode_dosen'),
+            'nama_dosen'    => $request->input('nama_dosen'),
+            'email'         => $request->input('email'),
+            'no_hp'         => $request->input('no_hp')
+        ];
+        Dosen::create($data);
+        return redirect()->route('dosen.index');
     }
 
     /**
@@ -51,7 +60,17 @@ class DosenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $data = [
+            'kode_dosen'    => $request->input('kode_dosen'),
+            'nama_dosen'    => $request->input('nama_dosen'),
+            'email'         => $request->input('email'),
+            'no_hp'         => $request->input('no_hp')
+        ];
+        $status = Dosen::findOrFail($id);
+            $status->update($data);
+            return redirect()
+                ->route('dosen.index')
+                ->with('message', 'Data Status Sudah diupdate');
     }
 
     /**
