@@ -29,4 +29,7 @@ protected $table = 'kelas';
     {
         return $this->belongsTo(Jurusan::class, 'kode_jurusan', 'kode_jurusan');
     }
+    public function mahasiswa(){
+        return $this->hasMany(Mahasiswa::class, 'kode_kelas');
+    }
 }
