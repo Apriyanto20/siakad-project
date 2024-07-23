@@ -13,7 +13,7 @@ class JurusanController extends Controller
     public function index()
     {
         $kode_jurusan = Jurusan::createJurusan();
-        return view('pages.jurusan.index', compact('kode_jurusan'));
+        return view('pages.admin.jurusan.index', compact('kode_jurusan'));
     }
 
     /**

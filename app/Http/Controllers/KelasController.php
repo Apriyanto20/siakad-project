@@ -15,7 +15,7 @@ class KelasController extends Controller
     {
         $kode_kelas = Kelas::createKelas();
         $jurusan = Jurusan::all();
-        return view('pages.kelas.index', compact('kode_kelas'))->with([
+        return view('pages.admin.kelas.index', compact('kode_kelas'))->with([
             'jurusan'   =>  $jurusan
         ]);
     }
@@ -25,7 +25,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('pages.kelas.index', compact('kode_kelas'), [
+        return view('pages.admin.kelas.index', compact('kode_kelas'), [
             'jurusan'         => Jurusan::all()
         ]);
     }
@@ -42,7 +42,7 @@ class KelasController extends Controller
         ];
 
         Kelas::create($data);
-        return redirect()->route('kelas.index'); 
+        return redirect()->route('kelas.index');
     }
 
     /**

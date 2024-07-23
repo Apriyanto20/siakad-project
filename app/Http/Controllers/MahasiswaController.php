@@ -15,8 +15,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        $nim = Mahasiswa::createMahasiswa();
-        return view('pages.mahasiswa.index', compact('nim'), [
+        return view('pages.admin.mahasiswa.index', [
             'kelas' => $kelas
         ]);
     }
@@ -26,7 +25,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('pages.mahasiswa.index', compact('nim'), [
+        return view('pages.admin.mahasiswa.index', compact('nim'), [
             'kelas'         => Kelas::all()
         ]);
     }

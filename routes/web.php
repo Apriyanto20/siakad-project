@@ -6,6 +6,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\TahunAkademikController;
 use App\Models\Kelas;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,6 @@ Route::resource('kelas', KelasController::class)->middleware(['auth']);
 Route::resource('jurusan', JurusanController::class)->middleware(['auth']);
 Route::resource('dosen', DosenController::class)->middleware(['auth']);
 Route::resource('mahasiswa', MahasiswaController::class)->middleware(['auth']);
+Route::resource('akademik', TahunAkademikController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

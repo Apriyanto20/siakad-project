@@ -13,7 +13,7 @@ class DosenController extends Controller
     public function index()
     {
          $kode_dosen = Dosen::createDosen();
-        return view('pages.dosen.index', compact('kode_dosen'));
+        return view('pages.admin.dosen.index', compact('kode_dosen'));
     }
 
     /**

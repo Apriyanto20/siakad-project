@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dosen') }}
+            {{ __('Ruang') }}
         </h2>
     </x-slot>
 
@@ -11,40 +11,24 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Form Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Form Tambah Dosen</h3>
-                        <form action="{{ route('dosen.store') }}" method="POST">
+                        <h3 class="text-lg font-semibold mb-4">Form Tambah Ruang</h3>
+                        <form action="{{ route('ruang.store') }}" method="POST">
                             @csrf
                             <div class="my-5">
-                                <label for="kode_dosen"
+                                <label for="kode_ruang"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Kode Dosen</label>
-                                <input type="text" id="kode_dosen" name="kode_dosen"
+                                    Kode Ruang</label>
+                                <input type="text" id="kode_ruang" name="kode_ruang"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ $kode_dosen }}" readonly required />
+                                    placeholder="" value="{{ $kode_ruang }}" readonly required />
                             </div>
                             <div class="mb-5">
-                                <label for="nama_dosen"
+                                <label for="ruang"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Nama Dosen</label>
-                                <input type="text" id="nama_dosen" name="nama_dosen"
+                                    Ruang</label>
+                                <input type="text" id="ruang" name="ruang"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan Nama dosen" required autofocus />
-                            </div>
-                            <div class="mb-5">
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Email</label>
-                                <input type="text" id="email" name="email"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan Email Dosen" required autofocus />
-                            </div>
-                            <div class="mb-5">
-                                <label for="no_hp"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    No Handphone</label>
-                                <input type="text" id="no_hp" name="no_hp"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan No Handphone" required autofocus />
+                                    placeholder="Masukan Nama Ruang" required autofocus />
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -53,9 +37,9 @@
 
                     <!-- Data Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Data Dosen</h3>
+                        <h3 class="text-lg font-semibold mb-4">Data Ruang</h3>
                         <div class="overflow-x-auto">
-                            <table class="table table-bordered" id="dosen-datatable">
+                            <table class="table table-bordered" id="ruang-datatable">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col"
@@ -64,19 +48,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Kode dosen
+                                            Kode Ruang
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Nama Dosen
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Email
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            No Handphone
+                                            Ruang
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -92,7 +68,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    <div class="fixed inset-0  items-center justify-center z-50 hidden" id="sourceModal">
+    <div class="fixed inset-0 items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -110,22 +86,22 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="mb-5">
-                            <label for="kode_dosen"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode dosen
+                            <label for="kode_ruang"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="kd_dosen" name="kode_dosen"
+                            <input type="text" id="kd_ruang" name="kode_ruang"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kode dosenan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_dosen') }}</span>
+                                placeholder="Masukan Kode Ruangan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_ruang') }}</span>
                         </div>
                         <div class="mb-5">
-                            <label for="dosen"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">dosen
+                            <label for="ruang"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="nm_dosen" name="dosen"
+                            <input type="text" id="nm_ruang" name="ruang"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan dosenan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('dosen') }}</span>
+                                placeholder="Masukan Ruangan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('ruang') }}</span>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -142,14 +118,14 @@
     <script>
         $(document).ready(function() {
             console.log('RUN!');
-            $('#dosen-datatable').DataTable({
+            $('#ruang-datatable').DataTable({
                 ajax: {
-                    url: 'api/dosen',
-                    dataSrc: 'dosen'
+                    url: 'api/ruang',
+                    dataSrc: 'ruang'
                 },
                 initComplete: function() {
                     // Menengahkan teks di semua sel pada header (baris pertama)
-                    $('#dosen-datatable thead th').css('text-align', 'center');
+                    $('#ruang-datatable thead th').css('text-align', 'center');
                 },
                 columns: [{
                     data: 'no',
@@ -157,40 +133,30 @@
                         return `<div style="text-align:center">${meta.row + 1}.</div>`;;
                     }
                 }, {
-                    data: 'kode_dosen',
+                    data: 'kode_ruang',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
-                    data: 'nama_dosen',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'email',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'no_hp',
+                    data: 'ruang',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
                     data: {
                         id: 'id',
-                        dosen: 'dosen'
+                        ruang: 'ruang'
                     },
                     render: (data, type, row) => {
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
-                                                        data-modal-target="sourceModal" data-kode_dosen="${data.kode_dosen}" data-dosen="${data.dosen}"
+                                                        data-modal-target="sourceModal" data-kode_ruang="${data.kode_ruang}" data-ruang="${data.ruang}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
                                                     </button>`;
                         let deleteUrl =
-                            `<button onclick="return dosenDelete('${data.id}','${data.dosen}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+                            `<button onclick="return ruangDelete('${data.id}','${data.ruang}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
                         return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
@@ -201,17 +167,14 @@
             const formModal = document.getElementById('formSourceModal');
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
-            const dosen = button.dataset.dosen;
-            const kode_dosen = button.dataset.kode_dosen;
+            const ruang = button.dataset.ruang;
+            const kode_ruang = button.dataset.kode_ruang;
             console.log(button.dataset);
-            let url = "{{ route('dosen.update', ':id') }}".replace(':id', id);
+            let url = "{{ route('ruang.update', ':id') }}".replace(':id', id);
             let status = document.getElementById(modalTarget);
-            document.getElementById('title_source').innerText = `Update
-            dosen ${dosen}`;
-            document.getElementById('kd_dosen').value = kode_dosen;
-            document.getElementById('nm_dosen').value = dosen;
-            document.getElementById('email').value = email;
-            document.getElementById('no_hp').value = no_hp;
+            document.getElementById('title_source').innerText = `Update Ruang ${ruang}`;
+            document.getElementById('kd_ruang').value = kode_ruang;
+            document.getElementById('nm_ruang').value = ruang;
 
             document.getElementById('formSourceButton').innerText = 'Simpan';
             document.getElementById('formSourceModal').setAttribute('action', url);
@@ -235,10 +198,10 @@
             status.classList.toggle('hidden');
         }
 
-        const dosenDelete = async (id, name) => {
+        const ruangDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);
             if (tanya) {
-                await axios.post(`/dosen/${id}`, {
+                await axios.post(`/ruang/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })

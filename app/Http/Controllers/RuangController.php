@@ -13,7 +13,7 @@ class RuangController extends Controller
     public function index()
     {
         $kode_ruang = Ruang::createCode();
-        return view('pages.ruang.index', compact('kode_ruang'));
+        return view('pages.admin.ruang.index', compact('kode_ruang'));
     }
 
     /**

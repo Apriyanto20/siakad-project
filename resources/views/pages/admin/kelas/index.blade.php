@@ -183,6 +183,7 @@
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
                                                         data-modal-target="sourceModal" data-kode_kelas="${data.kode_kelas}" data-kelas="${data.kelas}"
+                                                        data-sts="${data.sts}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
@@ -199,6 +200,7 @@
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
             const kelas = button.dataset.kelas;
+            const sts = button.dataset.sts;
             const kode_kelas = button.dataset.kode_kelas;
             console.log(button.dataset);
             let url = "{{ route('kelas.update', ':id') }}".replace(':id', id);

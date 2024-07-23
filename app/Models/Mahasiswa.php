@@ -31,14 +31,6 @@ class Mahasiswa extends Model
 
 protected $table = 'mahasiswas';
 
-    public static function createMahasiswa()
-    {
-        $latestCode = self::orderBy('nim', 'desc')->value('nim');
-        $latestCodeNumber = intval(substr($latestCode, 2));
-        $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
-        $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
-        return 'MHS' . $formattedCodeNumber;
-    }
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kode_kelas', 'kode_kelas');
