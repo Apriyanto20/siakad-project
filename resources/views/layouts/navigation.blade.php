@@ -11,12 +11,12 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -49,13 +49,10 @@
                             <x-dropdown-link :href="route('mahasiswa.index')">
                                 {{ __('Mahasiswa') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('akademik.index')">
-                                {{ __('Tahun Akademik') }}
-                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
-                {{-- <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -73,15 +70,21 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('tahunAK.index')">
-                                {{ __('Akademik') }}
+                            <x-dropdown-link :href="route('akademik.index')">
+                                {{ __('Tahun Akademik') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('keterangan.index')">
+                                {{ __('Keterangan') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('kurikulum.index')">
+                                {{ __('Kurikulum') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
-                </div> --}}
+                </div>
             </div>
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button

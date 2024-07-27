@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TahunAkademik;
+use App\Models\Keterangan;
 use Illuminate\Http\Request;
 
-class TahunAkademikController extends Controller
+class KeteranganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $kode_tahun_akademik = TahunAkademik::createTahunAkademik();
-        return view('pages.admin.tahunAK.index', compact('kode_tahun_akademik'));
+        $kode_keterangan = Keterangan::createketerangan();
+        return view('pages.admin.keterangan.index', compact('kode_keterangan'));
     }
 
     /**
@@ -30,12 +30,12 @@ class TahunAkademikController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'kode_tahun_akademik'      => $request->input('kode_tahun_akademik'),
-            'tahun_akademik'           => $request->input('tahun_akademik')
+            'kode_keterangan'      => $request->input('kode_keterangan'),
+            'keterangan'           => $request->input('keterangan'),
         ];
 
-        TahunAkademik::create($data);
-        return redirect()->route('akademik.index');
+        Keterangan::create($data);
+        return redirect()->route('keterangan.index');
     }
 
     /**
@@ -60,13 +60,13 @@ class TahunAkademikController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'kode_tahun_akademik'      => $request->input('kode_tahun_akademik'),
-            'tahun_akademik'           => $request->input('tahun_akademik')
+            'kode_keterangan'      => $request->input('kode_keterangan'),
+            'keterangan'           => $request->input('keterangan'),
         ];
-        $status = TahunAkademik::findOrFail($id);
+        $status = Keterangan::findOrFail($id);
         $status->update($data);
         return redirect()
-            ->route('akademik.index')
+            ->route('keterangan.index')
             ->with('message', 'Data Status Sudah diupdate');
     }
 
@@ -75,8 +75,8 @@ class TahunAkademikController extends Controller
      */
     public function destroy(string $id)
     {
-        $akademik = TahunAkademik::findOrFail($id);
-        $akademik->delete();
-        return back()->with('message_delete', 'Data Tahun Akademik Sudah dihapus');
+        $keterangan = Keterangan::findOrFail($id);
+        $keterangan->delete();
+        return back()->with('message_delete', 'Data keterangan Sudah dihapus');
     }
 }

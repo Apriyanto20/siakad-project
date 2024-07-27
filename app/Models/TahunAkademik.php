@@ -23,4 +23,8 @@ protected $table = 'tahun_akademiks';
         $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
         return 'TA' . $formattedCodeNumber;
     }
+    public function Konfigurasi()
+    {
+        return $this->belongsTo(Konfigurasi::class, 'kode_konfigurasi', 'kode_konfigurasi');
+    }
 }

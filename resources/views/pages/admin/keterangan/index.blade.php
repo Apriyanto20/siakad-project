@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Tahun Akademik') }}
+            {{ __('Keterangan') }}
         </h2>
     </x-slot>
 
@@ -11,24 +11,24 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Form Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Form Tambah Tahun Akademik</h3>
-                        <form action="{{ route('akademik.store') }}" method="POST">
+                        <h3 class="text-lg font-semibold mb-4">Form Tambah keterangan</h3>
+                        <form action="{{ route('keterangan.store') }}" method="POST">
                             @csrf
                             <div class="my-5">
-                                <label for="kode_tahun_akademik"
+                                <label for="kode_keterangan"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Kode tahun_akademik</label>
-                                <input type="text" id="kode_tahun_akademik" name="kode_tahun_akademik"
+                                    Kode keterangan</label>
+                                <input type="text" id="kode_keterangan" name="kode_keterangan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ $kode_tahun_akademik }}" readonly required />
+                                    placeholder="" value="{{ $kode_keterangan }}" readonly required />
                             </div>
                             <div class="mb-5">
-                                <label for="tahun_akademik"
+                                <label for="keterangan"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    tahun_akademik</label>
-                                <input type="text" id="tahun_akademik" name="tahun_akademik"
+                                    keterangan</label>
+                                <input type="text" id="keterangan" name="keterangan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan Nama tahun_akademik" required autofocus />
+                                    placeholder="Masukan keterangan" required autofocus />
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -37,9 +37,9 @@
 
                     <!-- Data Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Data tahun_akademik</h3>
+                        <h3 class="text-lg font-semibold mb-4">Data Keterangan</h3>
                         <div class="overflow-x-auto">
-                            <table class="table table-bordered" id="tahun_akademik-datatable">
+                            <table class="table table-bordered" id="keterangan-datatable">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col"
@@ -48,11 +48,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Kode tahun_akademik
+                                            Kode Keterangan
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            tahun_akademik
+                                            Keterangan
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -68,7 +68,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    <div class="fixed inset-0  items-center justify-center z-50 hidden" id="sourceModal">
+    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -86,22 +86,22 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="mb-5">
-                            <label for="kode_tahun_akademik"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tahun_akademik
+                            <label for="kode_keterangan"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Keterangan
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="kd_tahun_akademik" name="kode_tahun_akademik"
+                            <input type="text" id="kd_keterangan" name="kode_keterangan"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kode tahun_akademikan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_tahun_akademik') }}</span>
+                                placeholder="Masukan Kode keteranganan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_keterangan') }}</span>
                         </div>
                         <div class="mb-5">
-                            <label for="tahun_akademik"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tahun_akademik
+                            <label for="keterangan"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="nm_tahun_akademik" name="tahun_akademik"
+                            <input type="text" id="nm_keterangan" name="keterangan"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan tahun_akademikan...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('tahun_akademik') }}</span>
+                                placeholder="Masukan keteranganan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('keterangan') }}</span>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -118,14 +118,14 @@
     <script>
         $(document).ready(function() {
             console.log('RUN!');
-            $('#tahun_akademik-datatable').DataTable({
+            $('#keterangan-datatable').DataTable({
                 ajax: {
-                    url: 'api/akademik',
-                    dataSrc: 'akademik'
+                    url: 'api/keterangan',
+                    dataSrc: 'keterangan'
                 },
                 initComplete: function() {
                     // Menengahkan teks di semua sel pada header (baris pertama)
-                    $('#tahun_akademik-datatable thead th').css('text-align', 'center');
+                    $('#keterangan-datatable thead th').css('text-align', 'center');
                 },
                 columns: [{
                     data: 'no',
@@ -133,30 +133,30 @@
                         return `<div style="text-align:center">${meta.row + 1}.</div>`;;
                     }
                 }, {
-                    data: 'kode_tahun_akademik',
+                    data: 'kode_keterangan',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
-                    data: 'tahun_akademik',
+                    data: 'keterangan',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
                     data: {
                         id: 'id',
-                        tahun_akademik: 'tahun_akademik'
+                        keterangan: 'keterangan'
                     },
                     render: (data, type, row) => {
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
-                                                        data-modal-target="sourceModal" data-kode_tahun_akademik="${data.kode_tahun_akademik}" data-tahun_akademik="${data.tahun_akademik}"
+                                                        data-modal-target="sourceModal" data-kode_keterangan="${data.kode_keterangan}" data-keterangan="${data.keterangan}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
                                                     </button>`;
                         let deleteUrl =
-                            `<button onclick="return tahun_akademikDelete('${data.id}','${data.tahun_akademik}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+                            `<button onclick="return keteranganDelete('${data.id}','${data.keterangan}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
                         return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
@@ -167,14 +167,15 @@
             const formModal = document.getElementById('formSourceModal');
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
-            const tahun_akademik = button.dataset.tahun_akademik;
-            const kode_tahun_akademik = button.dataset.kode_tahun_akademik;
+            const keterangan = button.dataset.keterangan;
+            const kode_keterangan = button.dataset.kode_keterangan;
             console.log(button.dataset);
-            let url = "{{ route('akademik.update', ':id') }}".replace(':id', id);
+            let url = "{{ route('keterangan.update', ':id') }}".replace(':id', id);
             let status = document.getElementById(modalTarget);
-            document.getElementById('title_source').innerText = `Update tahun_akademik ${tahun_akademik}`;
-            document.getElementById('kd_tahun_akademik').value = kode_tahun_akademik;
-            document.getElementById('nm_tahun_akademik').value = tahun_akademik;
+            document.getElementById('title_source').innerText = `Update
+            keterangan ${keterangan}`;
+            document.getElementById('kd_keterangan').value = kode_keterangan;
+            document.getElementById('nm_keterangan').value = keterangan;
 
             document.getElementById('formSourceButton').innerText = 'Simpan';
             document.getElementById('formSourceModal').setAttribute('action', url);
@@ -198,10 +199,10 @@
             status.classList.toggle('hidden');
         }
 
-        const tahun_akademikDelete = async (id, name) => {
+        const keteranganDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);
             if (tanya) {
-                await axios.post(`/akademik/${id}`, {
+                await axios.post(`/keterangan/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })
