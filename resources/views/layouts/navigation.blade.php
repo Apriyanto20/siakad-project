@@ -79,6 +79,9 @@
                             <x-dropdown-link :href="route('kurikulum.index')">
                                 {{ __('Kurikulum') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('konfigurasi.index')">
+                                {{ __('Konfigurasi') }}
+                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>

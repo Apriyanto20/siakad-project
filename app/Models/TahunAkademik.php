@@ -25,6 +25,6 @@ protected $table = 'tahun_akademiks';
     }
     public function Konfigurasi()
     {
-        return $this->belongsTo(Konfigurasi::class, 'kode_konfigurasi', 'kode_konfigurasi');
+        return $this->hashMany(Konfigurasi::class, 'kode_konfigurasi');
     }
 }

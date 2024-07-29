@@ -4,12 +4,14 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KeteranganController;
+use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\TahunAkademikController;
 use App\Models\Kelas;
+use App\Models\Konfigurasi;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,5 +36,6 @@ Route::resource('mahasiswa', MahasiswaController::class)->middleware(['auth']);
 Route::resource('akademik', TahunAkademikController::class)->middleware(['auth']);
 Route::resource('keterangan', KeteranganController::class)->middleware(['auth']);
 Route::resource('kurikulum', KurikulumController::class)->middleware(['auth']);
+Route::resource('konfigurasi', KonfigurasiController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

@@ -69,7 +69,7 @@ class KelasController extends Controller
         $data = [
           'kode_kelas'      => $request->input('kode_kelas'),
           'kelas'           => $request->input('kelas'),
-          'jurusan'         => Jurusan::all()
+          'kode_jurusan'         => $request->input('kode_jurusan'),
         ];
         $status = Kelas::findOrFail($id);
             $status->update($data);

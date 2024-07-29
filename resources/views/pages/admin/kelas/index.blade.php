@@ -114,7 +114,7 @@
                         <div>
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jurusan</label>
                             <select class="js-example-placeholder-single js-states form-control w-[670px] m-6"
-                                id="sts" name="sts" data-placeholder="Pilih Jurusan">
+                                id="kode_jurusan" name="kode_jurusan" data-placeholder="Pilih Jurusan">
                                 <option value="">Pilih...</option>
                                 @foreach ($jurusan as $j)
                                     <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
@@ -183,7 +183,7 @@
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
                                                         data-modal-target="sourceModal" data-kode_kelas="${data.kode_kelas}" data-kelas="${data.kelas}"
-                                                        data-sts="${data.sts}"
+                                                        data-kode_jurusan="${data.kode_jurusan}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
@@ -200,7 +200,7 @@
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
             const kelas = button.dataset.kelas;
-            const sts = button.dataset.sts;
+            const kode_jurusan = button.dataset.kode_jurusan;
             const kode_kelas = button.dataset.kode_kelas;
             console.log(button.dataset);
             let url = "{{ route('kelas.update', ':id') }}".replace(':id', id);
@@ -208,10 +208,10 @@
             document.getElementById('title_source').innerText = `Update kelas ${kelas}`;
             document.getElementById('kd_kelas').value = kode_kelas;
             document.getElementById('nm_kelas').value = kelas;
-            document.getElementById('sts').value = sts;
-            document.querySelector('[name="sts"]').value = sts;
+            document.getElementById('kode_jurusan').value = kode_jurusan;
+            document.querySelector('[name="kode_jurusan"]').value = kode_jurusan;
             let event = new Event('change');
-            document.querySelector('[name="sts"]').dispatchEvent(event);
+            document.querySelector('[name="kode_jurusan"]').dispatchEvent(event);
 
             document.getElementById('formSourceButton').innerText = 'Simpan';
             document.getElementById('formSourceModal').setAttribute('action', url);

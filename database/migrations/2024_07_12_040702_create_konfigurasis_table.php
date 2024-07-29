@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('konfigurasis', function (Blueprint $table) {
             $table->id();
             $table->string('kode_konfigurasi');
-            $table->string('kode_tahun_akademin');
+            $table->string('kode_tahun_akademik');
             $table->string('kode_keterangan');
             $table->string('kode_kurikulum');
             $table->timestamps();
