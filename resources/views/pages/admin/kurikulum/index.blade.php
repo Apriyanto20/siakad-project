@@ -80,7 +80,7 @@
         </div>
     </div>
     {{-- MODAL --}}
-    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
+    <div class="fixed inset-0  items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <div class="fixed inset-0 flex items-center justify-center">
             <div class="w-full md:w-1/2 relative bg-white rounded-lg shadow mx-5">
@@ -174,6 +174,13 @@
                         kurikulum: 'kurikulum'
                     },
                     render: (data, type, row) => {
+                        var mo = "{{ route('kurikulum.show', ':id') }}".replace(
+                            ':id',
+                            data.id
+                        );
+                        let showUrl = `<button type="button" onclick="window.location.href='${mo}'" class="bg-emerald-300 hover:bg-emerald-400 px-3 py-1 rounded-md text-xs text-white">
+                                    <i class="fa-solid fa-circle-info text-white"></i>
+                                </button>`;
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
                                                         data-modal-target="sourceModal" data-kode_kurikulum="${data.kode_kurikulum}" data-kurikulum="${data.kurikulum}" data-tahun="${data.tahun}"
@@ -183,7 +190,7 @@
                                                     </button>`;
                         let deleteUrl =
                             `<button onclick="return kurikulumDelete('${data.id}','${data.kurikulum}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
-                        return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
+                        return `<div style="text-align:center">${showUrl} ${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
             });

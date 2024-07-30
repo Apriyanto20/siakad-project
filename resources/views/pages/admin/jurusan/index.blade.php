@@ -157,7 +157,7 @@
                                                     </button>`;
                         let deleteUrl =
                             `<button onclick="return jurusanDelete('${data.id}','${data.jurusan}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
-                        return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
+                        return `<div style="text-align:center"> ${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
             });

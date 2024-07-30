@@ -43,7 +43,7 @@ class KurikulumController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('pages.admin.kurikulum.detail');
     }
 
     /**

@@ -11,12 +11,12 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="sm:flex sm:items-center sm:ms-6">
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -52,7 +52,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-                <div class="sm:flex sm:items-center sm:ms-6">
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -85,7 +85,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-                <div class="sm:flex sm:items-center sm:ms-6">
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <!-- Settings Dropdown -->
-            <div class="sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -170,6 +170,96 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-dropdown>
+                <x-slot name="trigger">
+                    <button
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <div>Data Master</div>
+
+                        <div class="ms-1">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </button>
+                </x-slot>
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('dosen.index')">
+                        {{ __('Dosen') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('jurusan.index')">
+                        {{ __('Jurusan') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('kelas.index')">
+                        {{ __('Kelas') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('ruang.index')">
+                        {{ __('Ruang') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('mahasiswa.index')">
+                        {{ __('Mahasiswa') }}
+                    </x-dropdown-link>
+                </x-slot>
+            </x-dropdown>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-dropdown align="right" width="48">
+                <x-slot name="trigger">
+                    <button
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <div>Kurikulum</div>
+
+                        <div class="ms-1">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </button>
+                </x-slot>
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('akademik.index')">
+                        {{ __('Tahun Akademik') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('keterangan.index')">
+                        {{ __('Keterangan') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('kurikulum.index')">
+                        {{ __('Kurikulum') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('konfigurasi.index')">
+                        {{ __('Konfigurasi') }}
+                    </x-dropdown-link>
+                </x-slot>
+            </x-dropdown>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-dropdown align="right" width="48">
+                <x-slot name="trigger">
+                    <button
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <div>Akademik</div>
+
+                        <div class="ms-1">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </button>
+                </x-slot>
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('semester.index')">
+                        {{ __('Semester') }}
+                    </x-dropdown-link>
+                </x-slot>
+            </x-dropdown>
         </div>
 
         <!-- Responsive Settings Options -->
