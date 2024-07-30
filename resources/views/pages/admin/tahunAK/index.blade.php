@@ -17,7 +17,7 @@
                             <div class="my-5">
                                 <label for="kode_tahun_akademik"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Kode tahun_akademik</label>
+                                    Kode Tahun Akademik</label>
                                 <input type="text" id="kode_tahun_akademik" name="kode_tahun_akademik"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="" value="{{ $kode_tahun_akademik }}" readonly required />
@@ -25,7 +25,7 @@
                             <div class="mb-5">
                                 <label for="tahun_akademik"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    tahun_akademik</label>
+                                    Tahun Akademik</label>
                                 <input type="text" id="tahun_akademik" name="tahun_akademik"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Masukan Nama tahun_akademik" required autofocus />
@@ -37,7 +37,7 @@
 
                     <!-- Data Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Data tahun_akademik</h3>
+                        <h3 class="text-lg font-semibold mb-4">Data Tahun Akademik</h3>
                         <div class="overflow-x-auto">
                             <table class="table table-bordered" id="tahun_akademik-datatable">
                                 <thead class="bg-gray-50">
@@ -48,11 +48,11 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Kode tahun_akademik
+                                            Kode Tahun Akademik
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            tahun_akademik
+                                            Tahun Akademik
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -87,7 +87,7 @@
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="mb-5">
                             <label for="kode_tahun_akademik"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tahun_akademik
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Tahun Akademik
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="kd_tahun_akademik" name="kode_tahun_akademik"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -96,7 +96,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="tahun_akademik"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tahun_akademik
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tahun Akademik
                                 <span class="text-red-500">*</span></label>
                             <input type="text" id="nm_tahun_akademik" name="tahun_akademik"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

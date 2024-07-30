@@ -25,9 +25,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kelas.index', compact('kode_kelas'), [
-            'jurusan'         => Jurusan::all()
-        ]);
+
     }
 
     /**
@@ -69,7 +67,7 @@ class KelasController extends Controller
         $data = [
           'kode_kelas'      => $request->input('kode_kelas'),
           'kelas'           => $request->input('kelas'),
-          'kode_jurusan'         => $request->input('kode_jurusan'),
+          'kode_jurusan'    => $request->input('kode_jurusan'),
         ];
         $status = Kelas::findOrFail($id);
             $status->update($data);

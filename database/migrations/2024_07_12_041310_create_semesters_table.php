@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_semester');
             $table->string('semester');
-            $table->string('keterangan');
+            $table->string('kode_keterangan');
             $table->timestamps();
         });
     }

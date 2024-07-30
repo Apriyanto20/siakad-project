@@ -1,18 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Kurikulum;
+use App\Models\Keterangan;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 
-class KurikulumController extends Controller
+class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $kode_kurikulum = Kurikulum::createkurikulum();
-    return view('pages.admin.kurikulum.index', compact('kode_kurikulum'));
+        $kode_semester = Semester::createSemester();
+        $keterangan = Keterangan::all();
+        return view('pages.admin.semester.index', compact('kode_semester'))->with([
+            'keterangan'   =>  $keterangan
+        ]);
     }
 
     /**
@@ -29,13 +34,13 @@ class KurikulumController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'kode_kurikulum'      => $request->input('kode_kurikulum'),
-            'kurikulum'           => $request->input('kurikulum'),
-            'tahun'               => $request->input('tahun')
+            'kode_semester'     => $request->input('kode_semester'),
+            'semester'          => $request->input('semester'),
+            'kode_keterangan'   => $request->input('keterangan')
         ];
 
-        Kurikulum::create($data);
-        return redirect()->route('kurikulum.index');
+        Semester::create($data);
+        return redirect()->route('semester.index');
     }
 
     /**
@@ -60,14 +65,14 @@ class KurikulumController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'kode_kurikulum'      => $request->input('kode_kurikulum'),
-            'kurikulum'           => $request->input('kurikulum'),
-            'tahun'               => $request->input('tahun')
+            'kode_semester'      => $request->input('kode_semester'),
+            'semester'           => $request->input('semester'),
+            'kode_keterangan'    => $request->input('kode_keterangan'),
         ];
-        $status = Kurikulum::findOrFail($id);
+        $status = Semester::findOrFail($id);
         $status->update($data);
         return redirect()
-            ->route('kurikulum.index')
+            ->route('semester.index')
             ->with('message', 'Data Status Sudah diupdate');
     }
 
@@ -76,8 +81,8 @@ class KurikulumController extends Controller
      */
     public function destroy(string $id)
     {
-        $kurikulum = Kurikulum::findOrFail($id);
-        $kurikulum->delete();
-        return back()->with('message_delete', 'Data kurikulum Sudah dihapus');
+        $semester = Semester::findOrFail($id);
+        $semester->delete();
+        return back()->with('message_delete', 'Data Semester Sudah dihapus');
     }
 }

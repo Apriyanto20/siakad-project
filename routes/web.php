@@ -9,6 +9,7 @@ use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\TahunAkademikController;
 use App\Models\Kelas;
 use App\Models\Konfigurasi;
@@ -37,5 +38,6 @@ Route::resource('akademik', TahunAkademikController::class)->middleware(['auth']
 Route::resource('keterangan', KeteranganController::class)->middleware(['auth']);
 Route::resource('kurikulum', KurikulumController::class)->middleware(['auth']);
 Route::resource('konfigurasi', KonfigurasiController::class)->middleware(['auth']);
+Route::resource('semester', SemesterController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

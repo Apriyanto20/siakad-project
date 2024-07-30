@@ -17,7 +17,7 @@
                             <div class="my-5">
                                 <label for="kode_keterangan"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Kode keterangan</label>
+                                    Kode Keterangan</label>
                                 <input type="text" id="kode_keterangan" name="kode_keterangan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="" value="{{ $kode_keterangan }}" readonly required />
@@ -25,7 +25,7 @@
                             <div class="mb-5">
                                 <label for="keterangan"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    keterangan</label>
+                                    Keterangan</label>
                                 <input type="text" id="keterangan" name="keterangan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Masukan keterangan" required autofocus />

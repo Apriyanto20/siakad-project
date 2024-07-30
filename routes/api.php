@@ -9,6 +9,7 @@ use App\Http\Controllers\API\KonfigurasiAPIController;
 use App\Http\Controllers\API\KurikulumAPIController;
 use App\Http\Controllers\API\MahasiswaAPIController;
 use App\Http\Controllers\API\RuangAPIController;
+use App\Http\Controllers\API\SemesterAPIController;
 use App\Http\Controllers\API\TahunAkademikAPIController;
 use App\Http\Controllers\KelasAPIController;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ Route::get('/akademik', [TahunAkademikAPIController::class, 'get_all'])->name('a
 Route::get('/keterangan', [keteranganAPIController::class, 'get_all'])->name('keterangan.get');
 Route::get('/kurikulum', [KurikulumAPIController::class, 'get_all'])->name('kurikulum.get');
 Route::get('/konfigurasi', [KonfigurasiAPIController::class, 'get_all'])->name('konfigurasi.get');
+Route::get('/semester', [SemesterAPIController::class, 'get_all'])->name('semester.get');
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

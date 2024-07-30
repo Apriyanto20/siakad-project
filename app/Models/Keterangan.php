@@ -27,4 +27,8 @@ class Keterangan extends Model
     {
         return $this->hashMany(Konfigurasi::class, 'kode_konfigurasi');
     }
+    public function semester()
+    {
+        return $this->hasMany(Semester::class, 'kode_semester');
+    }
 }
