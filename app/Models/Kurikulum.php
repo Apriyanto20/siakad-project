@@ -28,4 +28,8 @@ class Kurikulum extends Model
     {
         return $this->hashMany(Konfigurasi::class, 'kode_konfigurasi');
     }
+    public function detailKurikulum()
+    {
+        return $this->hasMany(DetailKurikulum::class, 'kode_kurikulum');
+    }
 }

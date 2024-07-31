@@ -29,4 +29,8 @@ class Semester extends Model
     {
         return $this->belongsTo(Keterangan::class, 'kode_keterangan', 'kode_keterangan');
     }
+    public function matkul()
+    {
+        return $this->hasMany(MataKuliah::class, 'kode_mata_kuliah');
+    }
 }

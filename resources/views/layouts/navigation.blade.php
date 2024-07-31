@@ -106,6 +106,9 @@
                             <x-dropdown-link :href="route('semester.index')">
                                 {{ __('Semester') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('matkul.index')">
+                                {{ __('Mata Kuliah') }}
+                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -257,6 +260,9 @@
                 <x-slot name="content">
                     <x-dropdown-link :href="route('semester.index')">
                         {{ __('Semester') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('matkul.index')">
+                        {{ __('Mata Kuliah') }}
                     </x-dropdown-link>
                 </x-slot>
             </x-dropdown>

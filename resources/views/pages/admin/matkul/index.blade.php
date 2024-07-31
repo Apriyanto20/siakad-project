@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Detail Kurikulum') }}
+            {{ __('Mata Kuliah') }}
         </h2>
     </x-slot>
 
@@ -11,37 +11,53 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Form Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Form Tambah Detail Kurikulum</h3>
-                        <form action="{{ route('kurikulum.store') }}" method="POST">
+                        <h3 class="text-lg font-semibold mb-4">Form Tambah Mata Kuliah</h3>
+                        <form action="{{ route('matkul.store') }}" method="POST">
                             @csrf
                             <div class="my-5">
-                                <label for="kode_kurikulum"
+                                <label for="kode_mata_kuliah"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Detail Kurikulum</label>
-                                <input type="text" id="kode_kurikulum" name="kode_kurikulum"
+                                    Kode Mata Kuliah</label>
+                                <input type="text" id="kode_mata_kuliah" name="kode_mata_kuliah"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ $kode_kurikulum }}" readonly required />
+                                    placeholder="" value="{{ $matkul }}" readonly required />
+                            </div>
+                             <div class="mb-5">
+                                <label for="mata_kuliah"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Mata Kuliah</label>
+                                <input type="text" id="mata_kuliah" name="mata_kuliah"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan Mata Kuliah" required autofocus />
+                            </div>
+                             <div class="mb-5">
+                                <label for="sks"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    SKS</label>
+                                <input type="text" id="sks" name="sks"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan SKS" required />
                             </div>
                             <div class="mb-5">
-                                <label for="jurusan"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan
+                                <label for="semester"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">semester
                                     <span class="text-red-500">*</span></label>
                                 <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                    name="jurusan" data-placeholder="Pilih Jurusan">
+                                    name="semester" data-placeholder="Pilih semester">
                                     <option value="">Pilih...</option>
-                                    @foreach ($jurusan as $j)
-                                        <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
+                                    @foreach ($semester as $j)
+                                        <option value="{{ $j->kode_semester }}">{{ $j->semester }}</option>
                                     @endforeach
                                 </select>
                                 <span class="text-sm m-l text-red-500">{{ $errors->first('lantai') }}</span>
                             </div>
-                            <div class="mb-5">
-                                <label for="kurikulum"
+                             <div class="mb-5">
+                                <label for="ebook"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    kurikulum</label>
-                                <input type="text" id="kurikulum" name="kurikulum"
+                                    Ebook</label>
+                                <input type="text" id="ebook" name="ebook"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Masukan Nama kurikulum" required autofocus />
+                                    placeholder="Masukan Ebook" required />
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -50,9 +66,9 @@
 
                     <!-- Data Section -->
                     <div class="bg-gray-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">Data Detail Kurikulum</h3>
+                        <h3 class="text-lg font-semibold mb-4">Data mata_kuliah</h3>
                         <div class="overflow-x-auto">
-                            <table class="table table-bordered" id="kurikulum-datatable">
+                            <table class="table table-bordered" id="mata_kuliah-datatable">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col"
@@ -61,15 +77,23 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Kode Detail Kurikulum
+                                            Kode Mata Kuliah
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Jurusan
+                                            Mata Kuliah
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            kurikulum
+                                            SKS
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Semester
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Ebook
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -103,32 +127,50 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="mb-5">
-                            <label for="kode_kurikulum"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail Kurikulum
+                            <label for="kode_mata_kuliah"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata Kuliah
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="kd_kurikulum" name="kode_kurikulum"
+                            <input type="text" id="kd_mata_kuliah" name="kode_mata_kuliah"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kode kurikuluman...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_kurikulum') }}</span>
+                                placeholder="Masukan Kode mata_kuliahan...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('kode_mata_kuliah') }}</span>
+                        </div>
+                        <div class="mb-5">
+                            <label for="mata_kuliah"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">mata_kuliah
+                                <span class="text-red-500">*</span></label>
+                            <input type="text" id="nm_mata_kuliah" name="mata_kuliah"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Mata Kuliah...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('mata_kuliah') }}</span>
+                        </div>
+                        <div class="mb-5">
+                            <label for="sks"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SKS
+                                <span class="text-red-500">*</span></label>
+                            <input type="text" id="nm_sks" name="sks"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan SKS...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('mata_kuliah') }}</span>
                         </div>
                         <div>
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jurusan</label>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Semester</label>
                             <select class="js-example-placeholder-single js-states form-control w-[670px] m-6"
-                                id="kode_jurusan" name="kode_jurusan" data-placeholder="Pilih Jurusan">
+                                id="kode_semester" name="kode_semester" data-placeholder="Pilih semester">
                                 <option value="">Pilih...</option>
-                                @foreach ($jurusan as $j)
-                                    <option value="{{ $j->kode_jurusan }}">{{ $j->jurusan }}</option>
+                                @foreach ($semester as $j)
+                                    <option value="{{ $j->kode_semester }}">{{ $j->semester }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-5">
-                            <label for="kurikulum"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">kurikulum
+                            <label for="ebook"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ebook
                                 <span class="text-red-500">*</span></label>
-                            <input type="text" id="nm_kurikulum" name="kurikulum"
+                            <input type="text" id="nm_ebook" name="ebook"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan kurikuluman...." />
-                            <span class="text-sm m-l text-red-500">{{ $errors->first('kurikulum') }}</span>
+                                placeholder="Masukan Ebook...." />
+                            <span class="text-sm m-l text-red-500">{{ $errors->first('ebook') }}</span>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -145,14 +187,14 @@
     <script>
         $(document).ready(function() {
             console.log('RUN!');
-            $('#kurikulum-datatable').DataTable({
+            $('#mata_kuliah-datatable').DataTable({
                 ajax: {
-                    url: 'api/kurikulum',
-                    dataSrc: 'kurikulum'
+                    url: 'api/matkul',
+                    dataSrc: 'matkul'
                 },
                 initComplete: function() {
                     // Menengahkan teks di semua sel pada header (baris pertama)
-                    $('#kurikulum-datatable thead th').css('text-align', 'center');
+                    $('#mata_kuliah-datatable thead th').css('text-align', 'center');
                 },
                 columns: [{
                     data: 'no',
@@ -160,36 +202,46 @@
                         return `<div style="text-align:center">${meta.row + 1}.</div>`;;
                     }
                 }, {
-                    data: 'kode_kurikulum',
+                    data: 'kode_mata_kuliah',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
-                    data: 'jurusan',
+                    data: 'mata_kuliah',
                     render: (data, type, row) => {
-                        return data.jurusan;
+                        return data;
                     }
                 }, {
-                    data: 'kurikulum',
+                    data: 'sks',
+                    render: (data, type, row) => {
+                        return data;
+                    }
+                }, {
+                    data: 'semester',
+                    render: (data, type, row) => {
+                        return data.semester;
+                    }
+                },{
+                    data: 'ebook',
                     render: (data, type, row) => {
                         return data;
                     }
                 }, {
                     data: {
                         id: 'id',
-                        kurikulum: 'kurikulum'
+                        mata_kuliah: 'mata_kuliah'
                     },
                     render: (data, type, row) => {
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
-                                                        data-modal-target="sourceModal" data-kode_kurikulum="${data.kode_kurikulum}" data-kurikulum="${data.kurikulum}"
-                                                        data-kode_jurusan="${data.kode_jurusan}"
+                                                        data-modal-target="sourceModal" data-kode_mata_kuliah="${data.kode_mata_kuliah}" data-mata_kuliah="${data.mata_kuliah}" data-sks="${data.sks}"
+                                                        data-kode_semester="${data.kode_semester}" data-ebook="${data.ebook}"
                                                         onclick="editSourceModal(this)"
                                                         class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                        <i class="fas fa-edit"></i>
                                                     </button>`;
                         let deleteUrl =
-                            `<button onclick="return kurikulumDelete('${data.id}','${data.kurikulum}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+                            `<button onclick="return mata_kuliahDelete('${data.id}','${data.mata_kuliah}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
                         return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],
@@ -199,19 +251,24 @@
             const formModal = document.getElementById('formSourceModal');
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
-            const kurikulum = button.dataset.kurikulum;
-            const kode_jurusan = button.dataset.kode_jurusan;
-            const kode_kurikulum = button.dataset.kode_kurikulum;
+            const mata_kuliah = button.dataset.mata_kuliah;
+            const sks = button.dataset.sks;
+            const ebook = button.dataset.ebook;
+            const kode_semester = button.dataset.kode_semester;
+            const kode_mata_kuliah = button.dataset.kode_mata_kuliah;
             console.log(button.dataset);
-            let url = "{{ route('kurikulum.update', ':id') }}".replace(':id', id);
+            let url = "{{ route('matkul.update', ':id') }}".replace(':id', id);
             let status = document.getElementById(modalTarget);
-            document.getElementById('title_source').innerText = `Update kurikulum ${kurikulum}`;
-            document.getElementById('kd_kurikulum').value = kode_kurikulum;
-            document.getElementById('nm_kurikulum').value = kurikulum;
-            document.getElementById('kode_jurusan').value = kode_jurusan;
-            document.querySelector('[name="kode_jurusan"]').value = kode_jurusan;
+            document.getElementById('title_source').innerText = `Update Mata Kuliah ${mata_kuliah}`;
+            document.getElementById('kd_mata_kuliah').value = kode_mata_kuliah;
+            document.getElementById('nm_mata_kuliah').value = mata_kuliah;
+            document.getElementById('nm_sks').value = sks;
+            document.getElementById('kode_semester').value = kode_semester;
+            document.querySelector('[name="kode_semester"]').value = kode_semester;
             let event = new Event('change');
-            document.querySelector('[name="kode_jurusan"]').dispatchEvent(event);
+            document.querySelector('[name="kode_semester"]').dispatchEvent(event);
+            document.getElementById('nm_ebook').value = ebook;
+
 
             document.getElementById('formSourceButton').innerText = 'Simpan';
             document.getElementById('formSourceModal').setAttribute('action', url);
@@ -235,10 +292,10 @@
             status.classList.toggle('hidden');
         }
 
-        const kurikulumDelete = async (id, name) => {
+        const mata_kuliahDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);
             if (tanya) {
-                await axios.post(`/kurikulum/${id}`, {
+                await axios.post(`/matkul/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })

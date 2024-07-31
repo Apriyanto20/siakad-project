@@ -12,7 +12,7 @@ class KurikulumController extends Controller
     public function index()
     {
         $kode_kurikulum = Kurikulum::createkurikulum();
-    return view('pages.admin.kurikulum.index', compact('kode_kurikulum'));
+        return view('pages.admin.kurikulum.index', compact('kode_kurikulum'));
     }
 
     /**
